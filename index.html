@@ -1,894 +1,180 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Livros Proféticos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #202020;
-            color: #353434;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Poesias Biblicas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #000592;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 80%;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .question {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .options {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    .option {
+        margin: 0 10px 10px 0;
+        padding: 10px 20px;
+        font-size: 25px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .option:hover {
+        background-color: #45a049;
+    }
+    #timer {
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+        color: #333;
+    }
+    #countdown {
+        color: #ff0000;
+    }
+
+    @media screen and (max-width: 600px) {
+        .container {
+            max-width: 90%;
         }
-        .quiz-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #c9c9c9;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .quiz-container h1 {
-            text-align: center;
-            color: #3a0202;
-        }
-        .question {
-            margin-bottom: 20px;
-            color: #000000;
-        }
-        .question h3 {
-            margin-bottom: 10px;
-            color: #4e0202;
-        }
-        .answers label {
-            display: block;
-            margin-bottom: 5px;
-            padding: 10px;
-            background-color: #777777;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .answers label:hover {
-            background-color: #f1f1f1;
-        }
-        .submit-button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .submit-button:hover {
-            background-color: #218838;
-        }
-        .result {
-            font-size: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .timer {
-            font-size: 18px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ff0000;
-        }
-    </style>
+    }
+</style>
 </head>
-
 <body>
-    
 
-    <div class="quiz-container">
-        <h1>Quiz - Livros Proféticos</h1>
-        <div id="timer" class="timer">Tempo restante: 20:00</div>
-        <form id="quiz-form">
-            <!-- Adicione aqui todas as perguntas -->
-            <div class="question">
-                <h3>1. Qual é o foco principal do curso mencionado no documento?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q1" value="a"> Estudar a história de Israel.</label>
-                    <label><input type="radio" name="q1" value="b"> Estudar o profetismo em Israel e os livros proféticos da Bíblia Hebraica.</label>
-                    <label><input type="radio" name="q1" value="c"> Analisar a poesia hebraica.</label>
-                </div>
-            </div>
-            <!-- Question 2 -->
-            <div class="question">
-                <h3>2. Como os livros proféticos são divididos nas Bíblias em português?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q2" value="a"> Em profetas antigos e modernos.</label>
-                    <label><input type="radio" name="q2" value="b"> Em profetas maiores e menores.</label>
-                    <label><input type="radio" name="q2" value="c"> Em livros históricos e poéticos.</label>
-                </div>
-            </div>
-            <!-- Question 3 -->
-            <div class="question">
-                <h3>3. Qual é a função principal dos profetas em Israel?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q3" value="a"> Ser líderes políticos.</label>
-                    <label><input type="radio" name="q3" value="b"> Ser porta-vozes do divino ao povo hebreu e às nações.</label>
-                    <label><input type="radio" name="q3" value="c"> Ser reis e sacerdotes.</label>
-                </div>
-            </div>
-            <!-- Question 4 -->
-            <div class="question">
-                <h3>4. Qual era a mensagem principal dos profetas?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q4" value="a"> Ensinar técnicas de guerra.</label>
-                    <label><input type="radio" name="q4" value="b"> Chamar as pessoas para que se voltassem a Deus.</label>
-                    <label><input type="radio" name="q4" value="c"> Predizer eventos climáticos.</label>
-                </div>
-            </div>
-            <!-- Question 5 -->
-            <div class="question">
-                <h3>5. Como os profetas bíblicos frequentemente fundamentavam suas mensagens?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q5" value="a"> Em suas próprias experiências pessoais.</label>
-                    <label><input type="radio" name="q5" value="b"> Na Lei de Moisés.</label>
-                    <label><input type="radio" name="q5" value="c"> Nas tradições orais de outros povos.</label>
-                </div>
-            </div>
-            <!-- Question 6 -->
-            <div class="question">
-                <h3>6. Em qual passagem os sacerdotes, profetas e sábios são mencionados como guias do povo israelita?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q6" value="a"> Isaías 6:1</label>
-                    <label><input type="radio" name="q6" value="b"> Jeremias 18:18</label>
-                    <label><input type="radio" name="q6" value="c"> Salmo 23:1</label>
-                </div>
-            </div>
-            <!-- Question 7 -->
-            <div class="question">
-                <h3>7. Normalmente era os profetas verdadeiros ou os falsos que andavem em grupo?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q7" value="a"> Os verdadeiros profetas normalmente eram solitarios.</label>
-                    <label><input type="radio" name="q7" value="b"> Os falsos profetas eram solitarios.</label>
-                    <label><input type="radio" name="q7" value="c"> Os falsos profetas pregavam a Lei de Moisés sempre em grupo.</label>
-                </div>
-            </div>
-            <!-- Question 8 -->
-            <div class="question">
-                <h3>8. O que define um profeta de acordo com Êxodo 7:1?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q8" value="a"> Um homem sábio que dava bons conselhos.</label>
-                    <label><input type="radio" name="q8" value="b"> Aquele que transmite a mensagem de Deus.</label>
-                    <label><input type="radio" name="q8" value="c"> Um líder militar.</label>
-                </div>
-            </div>
-            <!-- Question 9 -->
-            <div class="question">
-                <h3>9. Quem foi o profeta que foi corrigido por Deus após aconselhar Davi?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q9" value="a"> Isaías</label>
-                    <label><input type="radio" name="q9" value="b"> Natã</label>
-                    <label><input type="radio" name="q9" value="c"> Jeremias</label>
-                </div>
-            </div>
-            <!-- Question 10 -->
-            <div class="question">
-                <h3>10. Qual período marca o início do desenvolvimento do ministério profético em Israel?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q10" value="a"> A criação do mundo.</label>
-                    <label><input type="radio" name="q10" value="b"> A libertação do povo da escravidão no Egito.</label>
-                    <label><input type="radio" name="q10" value="c"> A construção do templo de Salomão.</label>
-                </div>
-            </div>
-            <!-- Question 11 -->
-            <div class="question">
-                <h3>11. Qual profeta foi usado por Deus durante o período dos juízes?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q11" value="a"> Sofonias</label>
-                    <label><input type="radio" name="q11" value="b"> Débora</label>
-                    <label><input type="radio" name="q11" value="c"> Ezequiel</label>
-                </div>
-            </div>
-            <!-- Question 12 -->
-            <div class="question">
-                <h3>12. Qual profeta é considerado o iniciador de uma ordem profética em Israel?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q12" value="a"> Elias</label>
-                    <label><input type="radio" name="q12" value="b"> Samuel</label>
-                    <label><input type="radio" name="q12" value="c"> Eliseu</label>
-                </div>
-            </div>
-            <!-- Question 13 -->
-            <div class="question">
-                <h3>13. Durante qual período a atividade profética cresceu significativamente?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q13" value="a"> Durante a monarquia israelita.</label>
-                    <label><input type="radio" name="q13" value="b"> Durante o período dos juízes.</label>
-                    <label><input type="radio" name="q13" value="c"> Durante o cativeiro na Babilônia.</label>
-                </div>
-            </div>
-            <!-- Question 14 -->
-            <div class="question">
-                <h3>14. Quais eram os profetas considerados "maiores" devido ao volume de seus escritos?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q14" value="a"> Jeremias, Ezequiel e Oseias.</label>
-                    <label><input type="radio" name="q14" value="b"> Isaías, Jeremias e Ezequiel.</label>
-                    <label><input type="radio" name="q14" value="c"> Oseias, Joel e Amós.</label>
-                </div>
-            </div>
-            <!-- Question 15 -->
-            <div class="question">
-                <h3>15. Quais profetas são classificados como "menores"?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q15" value="a"> Isaías, Jeremias e Ezequiel.</label>
-                    <label><input type="radio" name="q15" value="b"> Oséias, Joel, Amós, Obadias, Jonas, Miqueias, Naum, Habacuque, Sofonias, Ageu, Zacarias e Malaquias.</label>
-                    <label><input type="radio" name="q15" value="c"> Samuel, Natã e Elias.</label>
-                </div>
-            </div>
-            <!-- Question 16 -->
-            <div class="question">
-                <h3>16. Qual profeta é conhecido por seu livro conter visões apocalípticas?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q16" value="a"> Isaías</label>
-                    <label><input type="radio" name="q16" value="b"> Jeremias</label>
-                    <label><input type="radio" name="q16" value="c"> Daniel</label>
-                </div>
-            </div>
-            <!-- Question 17 -->
-            <div class="question">
-                <h3>17. Qual profeta é famoso por desafiar os profetas de Baal no Monte Carmelo?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q17" value="a"> Elias</label>
-                    <label><input type="radio" name="q17" value="b"> Eliseu</label>
-                    <label><input type="radio" name="q17" value="c"> Natã</label>
-                </div>
-            </div>
-            <!-- Question 18 -->
-            <div class="question">
-                <h3>18. Em qual livro profético encontramos a promessa de um "novo coração" e um "novo espírito"?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q18" value="a"> Isaías</label>
-                    <label><input type="radio" name="q18" value="b"> Ezequiel</label>
-                    <label><input type="radio" name="q18" value="c"> Jeremias</label>
-                </div>
-            </div>
-            <!-- Question 19 -->
-            <div class="question">
-                <h3>19. Qual profeta foi levado ao céu em um redemoinho?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q19" value="a"> Ezequiel</label>
-                    <label><input type="radio" name="q19" value="b"> Elias</label>
-                    <label><input type="radio" name="q19" value="c"> Isaías</label>
-                </div>
-            </div>
-            <!-- Question 20 -->
-            <div class="question">
-                <h3>20. Qual profeta recebeu uma visão do vale de ossos secos?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q20" value="a"> Jeremias</label>
-                    <label><input type="radio" name="q20" value="b"> Ezequiel</label>
-                    <label><input type="radio" name="q20" value="c"> Isaías</label>
-                </div>
-            </div>
-            <!-- Question 21 -->
-            <div class="question">
-                <h3>21. Qual é o principal tema do livro de Amós?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q21" value="a"> Justiça social e julgamento divino.</label>
-                    <label><input type="radio" name="q21" value="b"> Promessas de prosperidade.</label>
-                    <label><input type="radio" name="q21" value="c"> Visões apocalípticas.</label>
-                </div>
-            </div>
-            <!-- Question 22 -->
-            <div class="question">
-                <h3>22. Quem é o profeta autor do livro que contém o famoso versículo "Porque eu bem sei os pensamentos que penso de vós, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais"?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q22" value="a"> Isaías</label>
-                    <label><input type="radio" name="q22" value="b"> Jeremias</label>
-                    <label><input type="radio" name="q22" value="c"> Ezequiel</label>
-                </div>
-            </div>
-            <!-- Question 23 -->
-            <div class="question">
-                <h3>23. Qual livro profético é conhecido por sua lamentação sobre a destruição de Jerusalém?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q23" value="a"> Jeremias</label>
-                    <label><input type="radio" name="q23" value="b"> Ezequiel</label>
-                    <label><input type="radio" name="q23" value="c"> Lamentações</label>
-                </div>
-            </div>
-            <!-- Question 24 -->
-            <div class="question">
-                <h3>24. Quem foi o profeta que resistiu ao chamado de Deus e tentou fugir para Társis?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q24" value="a"> Jonas</label>
-                    <label><input type="radio" name="q24" value="b"> Jeremias</label>
-                    <label><input type="radio" name="q24" value="c"> Daniel</label>
-                </div>
-            </div>
-            <!-- Question 25 -->
-            <div class="question">
-                <h3>25. Qual profeta denunciou a idolatria de Israel e usou sua própria vida como exemplo de fidelidade a Deus, mesmo casando-se com uma prostituta?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q25" value="a"> Oseias</label>
-                    <label><input type="radio" name="q25" value="b"> Isaías</label>
-                    <label><input type="radio" name="q25" value="c"> Miqueias</label>
-                </div>
-            </div>
-            <!-- Question 26 -->
-            <div class="question">
-                <h3>26. Qual profeta interpretou o sonho de Nabucodonosor sobre a estátua feita de vários materiais?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q26" value="a"> Jeremias</label>
-                    <label><input type="radio" name="q26" value="b"> Ezequiel</label>
-                    <label><input type="radio" name="q26" value="c"> Daniel</label>
-                </div>
-            </div>
-            <!-- Question 27 -->
-            <div class="question">
-                <h3>27. Qual profeta é conhecido por sua lamentação e profecia sobre a queda de Nínive?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q27" value="a"> Naum</label>
-                    <label><input type="radio" name="q27" value="b"> Habacuque</label>
-                    <label><input type="radio" name="q27" value="c"> Sofonias</label>
-                </div>
-            </div>
-            <!-- Question 28 -->
-            <div class="question">
-                <h3>28. Qual é o tema central do livro de Malaquias?</h3>
-                <div class="answers">
-                    <label><input type="radio" name="q28" value="a"> A reconstrução do templo.</label>
-                    <label><input type="radio" name="q28" value="b"> O amor de Deus por Israel e a vinda do mensageiro do Senhor.</label>
-                    <label><input type="radio" name="q28" value="c"> A idolatria e a corrupção do povo.</label>
-                </div>
-            </div>
-            <!-- Question 29 -->
-            <div class="question">
-                <h3>29. Qual profeta é conhecido por seu chamado em uma visão no templo onde viu o Senhor assentado sobre um alto e sublime trono?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q29" value="a"> Isaías</label>
-                    <label><input type="radio" name="q29" value="b"> Jeremias</label>
-                    <label><input type="radio" name="q29" value="c"> Ezequiel</label>
-                </div>
-            </div>
-            <!-- Question 30 -->
-            <div class="question">
-                <h3>30. Qual profeta viu uma visão de um homem medindo Jerusalém com um cordel de medir?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q30" value="a"> Ezequiel</label>
-                    <label><input type="radio" name="q30" value="b"> Zacarias</label>
-                    <label><input type="radio" name="q30" value="c"> Daniel</label>
-                </div>
-            </div>
+<div class="container">
+    <h1>Quiz Livros Poéticos</h1>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="timer">Tempo restante: <span id="countdown"></span></div>
+</div>
 
-            <!-- Question 31 -->
-            <div class="question">
-                <h3>31. Qual é o significado do nome "Joel"?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q31" value="a"> Deus é Grande</label>
-                    <label><input type="radio" name="q31" value="b"> YHWH é Deus</label>
-                    <label><input type="radio" name="q31" value="c"> O Salvador</label>
-                </div>
-            </div>
-            <!-- Question 32 -->
-            <div class="question">
-                <h3>32. De acordo com as aulas, qual foi a principal causa da divergência sobre a datação do livro de Joel?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q32" value="a"> A praga dos gafanhotos</label>
-                    <label><input type="radio" name="q32" value="b"> A falta de menção a um rei</label>
-                    <label><input type="radio" name="q32" value="c"> Todas as alternativas anteriores</label>
-                </div>
-            </div>
-            <!-- Question 33 -->
-            <div class="question">
-                <h3>33. Qual evento Pedro relaciona com a profecia de Joel sobre o derramamento do Espírito?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q33" value="a"> O batismo de Jesus</label>
-                    <label><input type="radio" name="q33" value="b"> A transfiguração</label>
-                    <label><input type="radio" name="q33" value="c"> O Pentecostes</label>
-                </div>
-            </div>
-            <!-- Question 34 -->
-            <div class="question">
-                <h3>34. Qual é uma possível datação do livro de Joel segundo alguns comentadores conservadores?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q34" value="a"> Século IX a.C.</label>
-                    <label><input type="radio" name="q34" value="b"> Século V a.C.</label>
-                    <label><input type="radio" name="q34" value="c"> Século II a.C.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>35. Qual das seguintes características NÃO é atribuída a Joel?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q35" value="a"> Profeta cultual</label>
-                    <label><input type="radio" name="q35" value="b"> Profeta Camponês</label>
-                    <label><input type="radio" name="q35" value="c"> Profeta escatológico</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>36. Qual é a mensagem principal do livro de Jonas?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q36" value="a"> A destruição de Jerusalém</label>
-                    <label><input type="radio" name="q36" value="b"> O arrependimento dos ninivitas</label>
-                    <label><input type="radio" name="q36" value="c"> A restauração do templo</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>37. Como é representada a relação de Deus com o povo de Israel no livro de Amós?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q37" value="a"> Como um pastor e suas ovelhas</label>
-                    <label><input type="radio" name="q37" value="b"> Como um pai e seus filhos</label>
-                    <label><input type="radio" name="q37" value="c"> Como um juiz e os acusados</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>38. Qual é uma das principais lições do livro de Joel para os dias de hoje?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q38" value="a"> A importância da riqueza.</label>
-                    <label><input type="radio" name="q38" value="b"> O valor da compaixão</label>
-                    <label><input type="radio" name="q38" value="c"> A necessidade de arrependimento</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>39. Segundo a aula 2, qual profeta é considerado um precursor da apocalíptica judaica?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q39" value="a"> Jonas</label>
-                    <label><input type="radio" name="q39" value="b"> Amós</label>
-                    <label><input type="radio" name="q39" value="c"> Joel</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>40. Qual evento é frequentemente relacionado ao "Dia do Senhor" no livro de Joel?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q40" value="a"> O nascimento de Jesus</label>
-                    <label><input type="radio" name="q40" value="b"> A crucificação</label>
-                    <label><input type="radio" name="q40" value="c"> O julgamento das nações</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>41. Quem foi contemporâneo de Isaías no Reino do Norte?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q41" value="a"> Jeremias</label>
-                    <label><input type="radio" name="q41" value="b"> Amós</label>
-                    <label><input type="radio" name="q41" value="c"> Joel</label>
-                </div>
-            </div><div class="question">
-                <h3>42. Quantos períodos principais o ministério de Isaías pode ser dividido?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q42" value="a"> Dois</label>
-                    <label><input type="radio" name="q42" value="b"> Três</label>
-                    <label><input type="radio" name="q42" value="c"> Quatro</label>
-                </div>
-            </div><div class="question">
-                <h3>43. Qual rei começou a reinar durante o segundo período do ministério de Isaías?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q43" value="a"> Jotão</label>
-                    <label><input type="radio" name="q43" value="b"> Acaz</label>
-                    <label><input type="radio" name="q43" value="c"> Manassés</label>
-                </div>
-            </div><div class="question">
-                <h3>44. Qual é o significado do nome Isaías?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q44" value="a"> Deus é grande</label>
-                    <label><input type="radio" name="q44" value="b"> Deus é amor</label>
-                    <label><input type="radio" name="q44" value="c"> YHWH é salvação</label>
-                </div>
-            </div><div class="question">
-                <h3>45. Em que século os críticos chegaram a questionar a autoria única do Livro de Isaías?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q45" value="a"> XVIII</label>
-                    <label><input type="radio" name="q45" value="b"> XVII</label>
-                    <label><input type="radio" name="q45" value="c"> XIX</label>
-                </div>
-            </div><div class="question">
-                <h3>46. Qual parte do Livro de Isaías é atribuída ao chamado Deutero-Isaías?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q46" value="a">  Capítulos 1-39</label>
-                    <label><input type="radio" name="q46" value="b"> Capítulos 40-66</label>
-                    <label><input type="radio" name="q46" value="c"> Capítulos 1-26</label>
-                </div>
-            </div><div class="question">
-                <h3>47. Que evento é visto como cumprindo a profecia de Isaías 7:14 no Novo Testamento?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q47" value="a"> Batismo de Jesus</label>
-                    <label><input type="radio" name="q47" value="b"> Nascimento de Jesus de uma virgem</label>
-                    <label><input type="radio" name="q47" value="c"> Tentação de Jesus no deserto</label>
-                </div>
-            </div><div class="question">
-                <h3>48. Como João Batista é descrito em referência a Isaías no Novo Testamento?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q48" value="a"> O Servo Sofredor</label>
-                    <label><input type="radio" name="q48" value="b">A voz que clama no deserto</label>
-                    <label><input type="radio" name="q48" value="c"> Ó Salvador</label>
-                </div>
-            </div><div class="question">
-                <h3>49. Qual dos seguintes reis NÃO era contemporâneo de Isaías?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q49" value="a"> Ezequias</label>
-                    <label><input type="radio" name="q49" value="b"> Josias</label>
-                    <label><input type="radio" name="q49" value="c"> Jotão</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>50. Qual é uma das principais ênfases dos capítulos 40-66 de Isaías?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q50" value="a"> O governo de Deus sobre a história</label>
-                    <label><input type="radio" name="q50" value="b"> Como leis de Moisés</label>
-                    <label><input type="radio" name="q50" value="c"> As histórias dos reis de Israel</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>51. Qual é o significado do nome Sofonias?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q51" value="a"> YHWH esconde/preserva</label>
-                    <label><input type="radio" name="q51" value="b"> YHWH é misericordioso</label>
-                    <label><input type="radio" name="q51" value="c"> YHWH salva</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>52. Qual era o contexto histórico em que Sofonias profetizou?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q52" value="a"> Durante o exílio babilônico</label>
-                    <label><input type="radio" name="q52" value="b"> Durante o reinado de Josias, antes das reformas religiosas</label>
-                    <label><input type="radio" name="q52" value="c"> Após a destruição de Jerusalém</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>53. O nome Naum significa:</h>
-                <div class="answers">
-                    <label><input type="radio" name="q53" value="a"> Consolação</label>
-                    <label><input type="radio" name="q53" value="b"> Salvação</label>
-                    <label><input type="radio" name="q53" value="c"> Misericórdia</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>54. Em qual cidade Naum focou sua profecia de destruição?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q54" value="a"> Jerusalém</label>
-                    <label><input type="radio" name="q54" value="b"> Babilônia</label>
-                    <label><input type="radio" name="q54" value="c"> Nínive</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>55. Qual das seguintes descrições se aplica ao profeta Jeremias?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q55" value="a"> Profetizou exclusivamente aos gentios</label>
-                    <label><input type="radio" name="q55" value="b"> Foi chamado ainda jovem e profetizou sobre a destruição de Jerusalém</label>
-                    <label><input type="radio" name="q55" value="c"> Foi contemporâneo de Moisés</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>56. O livro de Jeremias inclui</h>
-                <div class="answers">
-                    <label><input type="radio" name="q56" value="a"> Oráculos contra as nações</label>
-                    <label><input type="radio" name="q56" value="b"> Histórias miraculosas</label>
-                    <label><input type="radio" name="q56" value="c"> Hinos de louvor</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>57. Segundo Naum, a destruição de Nínive foi devido à:</h>
-                <div class="answers">
-                    <label><input type="radio" name="q57" value="a"> Idolatria</label>
-                    <label><input type="radio" name="q57" value="b"> Injustiça e violência</label>
-                    <label><input type="radio" name="q57" value="c"> Falta de fé</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>58. Jeremias foi perseguido por:</h>
-                <div class="answers">
-                    <label><input type="radio" name="q58" value="a">  Faraó do Egito</label>
-                    <label><input type="radio" name="q58" value="b"> Rei de Babilônia</label>
-                    <label><input type="radio" name="q58" value="c"> Autoridades de Judá</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>59. Qual era o tema central da mensagem de Sofonias?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q59" value="a"> A prosperidade de Israel</label>
-                    <label><input type="radio" name="q59" value="b"> O Dia do Senhor e o julgamento</label>
-                    <label><input type="radio" name="q59" value="c"> A construção do templo</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>60. Na visão de Jeremias, o novo pacto seria:</h>
-                <div class="answers">
-                    <label><input type="radio" name="q60" value="a"> Uma restauração do templo de Salomão</label>
-                    <label><input type="radio" name="q60" value="b"> Uma aliança escrita nos corações das pessoas</label>
-                    <label><input type="radio" name="q60" value="c"> Uma série de vitórias militares sobre os inimigos de Israel</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>61. Qual é o significado do nome "Habacuque"?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q61" value="a">Profeta</label>
-                    <label><input type="radio" name="q61" value="b"> Abraçar</label>
-                    <label><input type="radio" name="q61" value="c"> Fé</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>62. Segundo a aula 5, quem foram contemporâneos de Habacuque?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q62" value="a"> Jeremias, Sofonias, Naum e provavelmente Joel</label>
-                    <label><input type="radio" name="q62" value="b">  Isaías, Ezequiel e Daniel</label>
-                    <label><input type="radio" name="q62" value="c"> Moisés, Davi e Salomão</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>63. Em qual século foi escrito o livro de Habacuque?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q63" value="a"> VIII a.C.</label>
-                    <label><input type="radio" name="q63" value="b">  VII ou início do VI a.C.</label>
-                    <label><input type="radio" name="q63" value="c"> V a.C.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>64. Quem é mencionado como um modelo ao lado de Noé e Jó por Ezequiel?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q64" value="a"> Isaías</label>
-                    <label><input type="radio" name="q64" value="b"> Daniel</label>
-                    <label><input type="radio" name="q64" value="c"> Jeremias</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>65. Onde é mencionado que Habacuque pode ter sido um levita?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q65" value="a"> No livro de Ezequiel</label>
-                    <label><input type="radio" name="q65" value="b">  Nos manuscritos de Qumrã</label>
-                    <label><input type="radio" name="q65" value="c"> No acréscimo apócrifo ao livro de Daniel "Bel e o Dragão"</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>66. Em que língua foi composto parte do livro de Daniel, onde os gentios desempenham o papel principal?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q66" value="a"> Hebraico</label>
-                    <label><input type="radio" name="q66" value="b"> Aramaico</label>
-                    <label><input type="radio" name="q66" value="c"> Grego</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>67. Qual evento histórico contextua o livro de Habacuque?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q67" value="a"> Ascensão dos Assírios</label>
-                    <label><input type="radio" name="q67" value="b"> Ascensão dos Caldeus</label>
-                    <label><input type="radio" name="q67" value="c"> Queda de Jerusalém</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>68. Segundo o documento, qual é uma das mensagens teológicas principais de Habacuque?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q68" value="a"> Mesmo tudo parecendo o contrário, a pessoa que serve a Deus deve continuar acreditando nele</label>
-                    <label><input type="radio" name="q68" value="b"> A riqueza é um sinal da bênção divina</label>
-                    <label><input type="radio" name="q68" value="c"> A força militar é a chave para a segurança</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>69. Qual profeta é conhecido por ter usado linguagem musical em seu livro, sugerindo um uso litúrgico?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q69" value="a"> Habacuque</label>
-                    <label><input type="radio" name="q69" value="b"> Daniel</label>
-                    <label><input type="radio" name="q69" value="c"> Ezequiel</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>70. Qual capítulo do livro de Habacuque é muitas vezes questionado quanto à sua unidade com o resto do livro?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q70" value="a"> Capítulo 3</label>
-                    <label><input type="radio" name="q70" value="b"> Capítulo 1</label>
-                    <label><input type="radio" name="q70" value="c"> Capítulo 2</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>71. Qual é o significado do nome Obadias?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q71" value="a"> "Adorador de YHWH" ou "servo de YHWH".</label>
-                    <label><input type="radio" name="q71" value="b">  "Portador de más notícias".</label>
-                    <label><input type="radio" name="q71" value="c">  "Aquele que Deus amou".</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>72. Em qual contexto histórico Ageu profetizou?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q72" value="a"> Durante a invasão assíria.</label>
-                    <label><input type="radio" name="q72" value="b"> Após o retorno do cativeiro babilônico.</label>
-                    <label><input type="radio" name="q72" value="c"> Durante o exílio em Babilônia.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>73. Como é dividida a estrutura do livro de Zacarias, segundo os críticos?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q73" value="a"> Em duas partes: capítulos 1-8 e 9-14.</label>
-                    <label><input type="radio" name="q73" value="b"> Em três partes: capítulos 1-4, 5-10, e 11-14.</label>
-                    <label><input type="radio" name="q73" value="c"> Não há divisão reconhecida pelos críticos.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>74. Qual é a principal mensagem do livro de Malaquias?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q74" value="a"> A destruição de Jerusalém.</label>
-                    <label><input type="radio" name="q74" value="b"> A aliança e o "dia do Senhor".</label>
-                    <label><input type="radio" name="q74" value="c"> A reconstrução do templo.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>75. Qual evento histórico possivelmente influenciou as denúncias de Obadias contra Edom?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q75" value="a"> A invasão assíria.</label>
-                    <label><input type="radio" name="q75" value="b"> A queda de Jerusalém.</label>
-                    <label><input type="radio" name="q75" value="c"> A guerra contra os filisteus.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>76. Qual era o principal objetivo da profecia de Ageu?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q76" value="a"> Advertir contra a idolatria.</label>
-                    <label><input type="radio" name="q76" value="b"> Proclamar a vinda do Messias.</label>
-                    <label><input type="radio" name="q76" value="c"> Exortar o povo a reconstruir o templo.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>77. Qual característica distingue o livro de Zacarias dos outros livros proféticos?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q77" value="a">  Ênfase na moralidade pessoal.</label>
-                    <label><input type="radio" name="q77" value="b"> Ser o livro mais messiânico do Antigo Testamento.</label>
-                    <label><input type="radio" name="q77" value="c"> Foco na legislação mosaica.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>78. Como Malaquias trata o "dia do Senhor"?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q78" value="a"> Como um dia de festa e alegria.</label>
-                    <label><input type="radio" name="q78" value="b"> Como um dia insuportável e de julgamento.</label>
-                    <label><input type="radio" name="q78" value="c"> Como um dia irrelevante para os fiéis.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>79. Qual é o tema central do livro de Obadias?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q79" value="a"> A restauração de Israel.</label>
-                    <label><input type="radio" name="q79" value="b"> O julgamento de Edom.</label>
-                    <label><input type="radio" name="q79" value="c"> A vinda do Messias.</label>
-                </div>
-            </div>
-            <div class="question">
-                <h3>80. Com qual outro profeta Ageu trabalhou em conjunto?</h>
-                <div class="answers">
-                    <label><input type="radio" name="q80" value="a"> Jeremias</label>
-                    <label><input type="radio" name="q80" value="b"> Zacarias</label>
-                    <label><input type="radio" name="q80" value="c"> Isaías</label>
-                </div>
-            </div>
-        
-            
-            
-            <!-- Mais perguntas aqui... -->
-            <button type="button" class="submit-button" onclick="calculateResult()">Enviar</button>
-        </form>
-        <div id="result" class="result"></div>
-    </div>
-    <script>
-        function calculateResult() {
-            console.log("calculateResult function called"); // Debug message
-            var correctAnswers = {
-            q1: 'b',
-            q2: "b",
-            q3: "b",
-            q4: "b",
-            q5: "b",
-            q6: "b",
-            q7: "a",
-            q8: "b",
-            q9: "b",
-            q10: "b",
-            q11: "b",
-            q12: "b",
-            q13: "a",
-            q14: "b",
-            q15: "b",
-            q16: "c",
-            q17: "a",
-            q18: "b",
-            q19: "b",
-            q20: "b",
-            q21: "a",
-            q22: "b",
-            q23: "c",
-            q24: "a",
-            q25: "a",
-            q26: "c",
-            q27: "a",
-            q28: "b",
-            q29: "a",
-            q30: "b",
-            q31: "b",
-            q32: "c",
-            q33: "c",
-            q34: "a",
-            q35: "b",
-            q36: "b",
-            q37: "b",
-            q38: "c",
-            q39: "c",
-            q40: "c",
-            q41: "b",
-            q42: "b",
-            q43: "b",
-            q44: "c",
-            q45: "a",
-            q46: "b",
-            q47: "b",
-            q48: "b",
-            q49: "b",
-            q50: "a",
-            q51: "a",
-            q52: "b",
-            q53: "a",
-            q54: "c",
-            q55: "b",
-            q56: "a",
-            q57: "b",
-            q58: "c",
-            q59: "b",
-            q60: "b",
-            q61: "a",
-            q62: "a",
-            q63: "b",
-            q64: "b",
-            q65: "c",
-            q66: "b",
-            q67: "b",
-            q68: "a",
-            q69: "a",
-            q70: "a",
-            q71: "a",
-            q72: "b",
-            q73: "a",
-            q74: "b",
-            q75: "b",
-            q76: "c",
-            q77: "b",
-            q78: "b",
-            q79: "b",
-            q80: "b"
-                // Adicione as respostas corretas aqui
+<script>
+    const questions = [
+        {
+            question: "Como a poesia hebraica é caracterizada no documento da aula 1 e quais são suas principais características?",
+            options: 
+            ["Pela sua complexidade narrativa e estilo épico.",
+             "Pela brevidade, criatividade verbal e alto grau de estrutura.",
+             "Pela sua predominância de prosa e falta de estrutura rítmica.",
+             "Pelo uso de linguagem simbólica e apocalíptica."
+            ],
+            answer: "PaPela brevidade, criatividade verbal e alto grau de estrutura."
+        },
+        {
+            question: "Como o documento da aula 1 descreve o uso de aliteração e assonância na poesia hebraica?",
+            options: 
+            ["Não são características importantes na poesia hebraica.",
+             "São recursos principais e frequentes na poesia hebraica.",
+              "São usados apenas em textos legais e históricos.",
+               "São características exclusivas da poesia europeia."
+            ],
+            answer: "São recursos principais e frequentes na poesia hebraica."
+        },
+        {
+            question: "Quais são as formas de paralelismo identificadas por Robert Lowth na poesia bíblica?",
+            options: 
+            ["Paralelismo sinonímico, antitético e sintético.",
+             "Paralelismo narrativo, descritivo e argumentativo.",
+              "Paralelismo formal, informal e estrutural.",
+               "Paralelismo métrico, rítmico e temático."
+            ],
+
+            answer: "Paralelismo sinonímico, antitético e sintético."
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let chances = 3;
+    let countdown;
+
+    function startTimer(seconds) {
+        let timer = seconds;
+        countdown = setInterval(function() {
+            timer--;
+            document.getElementById("countdown").innerText = timer + "s";
+            if (timer === 0) {
+                clearInterval(countdown);
+                displayNextQuestion();
+            }
+        }, 1000);
+    }
+
+    function displayQuestion() {
+        document.getElementById("question").innerText = questions[currentQuestion].question;
+        const optionsContainer = document.getElementById("options");
+        optionsContainer.innerHTML = "";
+        questions[currentQuestion].options.forEach(option => {
+            const button = document.createElement("button");
+            button.textContent = option;
+            button.classList.add("option");
+            button.onclick = function() {
+                checkAnswer(option);
             };
-            var form = document.getElementById('quiz-form');
-            var resultDiv = document.getElementById('result');
-            var formData = new FormData(form);
-            var score = 0;
-            for (var [key, value] of formData.entries()) {
-                console.log(`Question: ${key}, Answer: ${value}`); // Debug message
-                if (correctAnswers[key] === value) {
-                    score++;
-                }
-            }
-            resultDiv.textContent = 'Você acertou ' + score + ' de ' + Object.keys(correctAnswers).length + ' perguntas.';
-            console.log(`Score: ${score}`); // Debug message
-        }
-         // Timer function
-         let timeLeft = 1200;
-        const timerElement = document.getElementById('timer');
-
-        function updateTimer() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            timerElement.textContent = `Tempo restante: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-            if (timeLeft > 0) {
-                timeLeft--;
-            } else {
-                clearInterval(timerInterval);
-                alert('O tempo acabou! Enviando suas respostas.');
-                document.getElementById('quiz-form').submit();
-            }
-        }
-
-        const timerInterval = setInterval(updateTimer, 1000);
-
-        // Form submission
-        document.getElementById('quiz-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            clearInterval(timerInterval);
-
-            // Process and display results (this part can be customized as needed)
-            const resultElement = document.getElementById('result');
-            resultElement.textContent = 'Obrigado por enviar suas respostas!';
+            optionsContainer.appendChild(button);
         });
+        startTimer(30); // Defina a duração do temporizador em segundos
+    }
 
-        // Initialize the timer
-        updateTimer();
-    </script>
+    function displayNextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            displayQuestion();
+        } else {
+            endQuiz();
+        }
+    }
+
+    function checkAnswer(selectedOption) {
+        clearInterval(countdown);
+        if (selectedOption === questions[currentQuestion].answer) {
+            score++;
+            displayNextQuestion();
+        } else {
+            chances--;
+            if (chances === 0) {
+                endQuiz();
+            } else {
+                alert("Resposta incorreta! Você tem mais " + chances + " tentativas.");
+                displayNextQuestion();
+            }
+        }
+    }
+
+    function endQuiz() {
+        alert("Quiz concluído! Sua pontuação é: " + score);
+        // Você pode adicionar mais ações aqui, como reiniciar o quiz.
+    }
+
+    displayQuestion();
+</script>
+
 </body>
 </html>
