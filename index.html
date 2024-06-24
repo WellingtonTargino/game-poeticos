@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Poesias Biblicas</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #000592;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 80%;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    .question {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .options {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    .option {
+        margin: 0 10px 10px 0;
+        padding: 10px 20px;
+        font-size: 25px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .option:hover {
+        background-color: #45a049;
+    }
+    #timer {
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+        color: #333;
+    }
+    #countdown {
+        color: #ff0000;
+    }
+
+    @media screen and (max-width: 600px) {
+        .container {
+            max-width: 90%;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Quiz Livros Poéticos</h1>
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="timer">Tempo restante: <span id="countdown"></span></div>
+</div>
+
+<script src="quiz.js"></script>
+
+</body>
+</html>
