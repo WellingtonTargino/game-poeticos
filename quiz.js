@@ -123,7 +123,7 @@ const questions = [
             "possui o objectivo de provocar ou evitar uma mudança.",
             "técnica literária ou artística que apoia uma determinada ação"
         ],
-        answer: "técnica literária ou artística que defende um determinado tema"
+        answer: "técnica literária ou artística que apoia uma determinada ação"
     },
     {
         question: "No Salmo 119, a cada 8 versos aparece uma letra hebraica, o que essas letras representam?",
@@ -286,6 +286,7 @@ function checkAnswer(selectedOption) {
         chances--;
         if (chances === 0) {
             endQuiz();
+            window.location.reload(true);
         } else {
             alert("Resposta incorreta! Você tem mais " + chances + " tentativas.");
             displayNextQuestion();
